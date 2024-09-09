@@ -1,0 +1,6 @@
+@Eventive.Api_HostAddress = http://localhost:5000
+
+GET {{Eventive.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
