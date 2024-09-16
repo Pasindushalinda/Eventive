@@ -1,4 +1,4 @@
-﻿using Eventive.Modules.Events.Api.Database;
+﻿using Eventive.Modules.Events.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Eventive.Api.Extensions;

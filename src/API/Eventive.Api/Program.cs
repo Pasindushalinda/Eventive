@@ -1,5 +1,5 @@
 using Eventive.Api.Extensions;
-using Eventive.Modules.Events.Api;
+using Eventive.Modules.Events.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
