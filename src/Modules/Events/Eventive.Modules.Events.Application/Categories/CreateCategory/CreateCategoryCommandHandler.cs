@@ -1,6 +1,6 @@
-﻿using Eventive.Modules.Events.Application.Abstarctions.Data;
-using Eventive.Modules.Events.Application.Abstarctions.Messaging;
-using Eventive.Modules.Events.Domain.Abstractions;
+﻿using Eventive.Common.Application.Messaging;
+using Eventive.Modules.Events.Application.Abstarctions.Data;
+using Eventive.Common.Domain;
 using Eventive.Modules.Events.Domain.Categories;
 
 namespace Eventive.Modules.Events.Application.Categories.CreateCategory;

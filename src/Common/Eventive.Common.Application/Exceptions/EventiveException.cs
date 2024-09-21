@@ -1,6 +1,6 @@
-﻿using Eventive.Modules.Events.Domain.Abstractions;
+﻿using Eventive.Common.Domain;
 
-namespace Eventive.Modules.Events.Application.Abstarctions.Exceptions;
+namespace Eventive.Common.Application.Exceptions;
 
 public sealed class EventiveException : Exception
 {

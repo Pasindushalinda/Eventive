@@ -1,4 +1,4 @@
-﻿using Eventive.Modules.Events.Domain.Abstractions;
+﻿using Eventive.Common.Domain;
 using Microsoft.AspNetCore.Http;
 
 namespace Eventive.Modules.Events.Presentaion.ApiResults;

@@ -1,4 +1,4 @@
-﻿using Eventive.Modules.Events.Application.Abstarctions.Messaging;
+﻿using Eventive.Common.Application.Messaging;
 using Eventive.Modules.Events.Application.TicketTypes.GetTicketType;
 
 namespace Eventive.Modules.Events.Application.TicketTypes.GetTicketTypes;

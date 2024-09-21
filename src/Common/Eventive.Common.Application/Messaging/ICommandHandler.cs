@@ -1,7 +1,7 @@
-﻿using Eventive.Modules.Events.Domain.Abstractions;
+﻿using Eventive.Common.Domain;
 using MediatR;
 
-namespace Eventive.Modules.Events.Application.Abstarctions.Messaging;
+namespace Eventive.Common.Application.Messaging;
 
 public interface ICommandHandler<in TCommand> : IRequestHandler<TCommand, Result>
     where TCommand : ICommand;

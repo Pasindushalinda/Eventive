@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Eventive.Common.Infrastructure\Eventive.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Events.Application\Eventive.Modules.Events.Application.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Events.Presentaion\Eventive.Modules.Events.Presentaion.csproj" />
   </ItemGroup>

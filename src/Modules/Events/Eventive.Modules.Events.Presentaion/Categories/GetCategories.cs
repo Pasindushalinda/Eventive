@@ -1,6 +1,6 @@
 ﻿using Eventive.Modules.Events.Application.Categories.GetCategories;
 using Eventive.Modules.Events.Application.Categories.GetCategory;
-using Eventive.Modules.Events.Domain.Abstractions;
+using Eventive.Common.Domain;
 using Eventive.Modules.Events.Presentaion.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

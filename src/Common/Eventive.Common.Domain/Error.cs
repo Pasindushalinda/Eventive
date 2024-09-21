@@ -1,4 +1,4 @@
-﻿namespace Eventive.Modules.Events.Domain.Abstractions;
+﻿namespace Eventive.Common.Domain;
 
 public record Error
 {

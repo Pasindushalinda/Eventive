@@ -1,4 +1,4 @@
-﻿namespace Eventive.Modules.Events.Application.Abstarctions.Clock;
+﻿namespace Eventive.Common.Application.Clock;
 
 public interface IDateTimeProvider
 {

@@ -1,8 +1,8 @@
-﻿using Eventive.Modules.Events.Application.Abstarctions.Data;
+﻿using Eventive.Common.Application.Data;
 using Npgsql;
 using System.Data.Common;
 
-namespace Eventive.Modules.Events.Infrastructure.Data;
+namespace Eventive.Common.Infrastructure.Data;
 
 //To inject datasource configure NpgsqlDataSource in EventModules
 public class DbConnectionFactory(NpgsqlDataSource dataSource) : IDbConnectionFactory

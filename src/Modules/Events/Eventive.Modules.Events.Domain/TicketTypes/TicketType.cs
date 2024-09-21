@@ -1,4 +1,4 @@
-﻿using Eventive.Modules.Events.Domain.Abstractions;
+﻿using Eventive.Common.Domain;
 using Eventive.Modules.Events.Domain.Events;
 
 namespace Eventive.Modules.Events.Domain.TicketTypes;

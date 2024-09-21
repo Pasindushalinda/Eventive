@@ -1,5 +1,5 @@
 ﻿using Eventive.Modules.Events.Application.Categories.CreateCategory;
-using Eventive.Modules.Events.Domain.Abstractions;
+using Eventive.Common.Domain;
 using Eventive.Modules.Events.Presentaion.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

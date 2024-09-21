@@ -1,7 +1,7 @@
 using Dapper;
-using Eventive.Modules.Events.Application.Abstarctions.Data;
-using Eventive.Modules.Events.Application.Abstarctions.Messaging;
-using Eventive.Modules.Events.Domain.Abstractions;
+using Eventive.Common.Application.Data;
+using Eventive.Common.Application.Messaging;
+using Eventive.Common.Domain;
 using System.Data.Common;
 
 namespace Eventive.Modules.Events.Application.Events.GetEvent;

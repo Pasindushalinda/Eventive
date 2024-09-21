@@ -1,9 +1,9 @@
 ﻿using System.Data.Common;
 using Dapper;
-using Eventive.Modules.Events.Application.Abstarctions.Data;
-using Eventive.Modules.Events.Application.Abstarctions.Messaging;
+using Eventive.Common.Application.Data;
+using Eventive.Common.Application.Messaging;
 using Eventive.Modules.Events.Application.Events.GetEvents;
-using Eventive.Modules.Events.Domain.Abstractions;
+using Eventive.Common.Domain;
 using Eventive.Modules.Events.Domain.Events;
 
 namespace Eventive.Modules.Events.Application.Events.SearchEvents;

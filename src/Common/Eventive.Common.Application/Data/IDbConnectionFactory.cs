@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace Eventive.Modules.Events.Application.Abstarctions.Data;
+namespace Eventive.Common.Application.Data;
 
 public interface IDbConnectionFactory
 {
