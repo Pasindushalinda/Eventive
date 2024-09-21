@@ -17,6 +17,8 @@ builder.Services.AddApplication([Eventive.Modules.Events.Application.AssemblyRef
 
 builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("Database")!);
 
+builder.Configuration.AddModuleConfiguration(["events"]);
+
 builder.Services.AddEventModule(builder.Configuration);
 
 var app = builder.Build();
