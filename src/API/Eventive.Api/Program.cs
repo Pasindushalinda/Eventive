@@ -2,8 +2,11 @@ using Eventive.Api.Extensions;
 using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Modules.Events.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+//add serilog
+builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -32,5 +35,9 @@ if (app.Environment.IsDevelopment())
 }
 
 EventModule.MapEndpoint(app);
+
+//add serilog middleware
+//track the incoming request and produced structured log
+app.UseSerilogRequestLogging();
 
 app.Run();
