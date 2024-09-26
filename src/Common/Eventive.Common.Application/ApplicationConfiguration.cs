@@ -1,10 +1,7 @@
 ﻿using Eventive.Common.Application.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Serilog;
 using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Eventive.Common.Application;
 
@@ -17,6 +14,10 @@ public static class ApplicationConfiguration
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(moduleAssemblies);
+
+            //used to register the ExceptionHandlingPipelineBehavior in your application’s dependency injection container.
+            //This ensures that the exception handling behavior is applied to all requests handled by MediatR
+            config.AddOpenBehavior(typeof(ExceptionHandlingPipelineBehavior<,>));
 
             //used to register the RequestLoggingPipelineBehavior in your application’s dependency injection container.
             //This ensures that the logging behavior is applied to all requests handled by MediatR.

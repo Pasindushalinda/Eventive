@@ -1,12 +1,22 @@
 using Eventive.Api.Extensions;
+using Eventive.Api.Middleware;
 using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Modules.Events.Infrastructure;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
 //add serilog
 builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
+
+//Registers the GlobalExceptionHandler as the implementation of the IExceptionHandler interface.
+//This ensures that the GlobalExceptionHandler will be used to handle exceptions throughout the application.
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+// Registers services to generate detailed problem responses conforming to the RFC 7807 specification.
+// This is often used to provide standardized error responses in a RESTful API.
+builder.Services.AddProblemDetails();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
