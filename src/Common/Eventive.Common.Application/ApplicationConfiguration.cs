@@ -1,6 +1,9 @@
 ﻿using Eventive.Common.Application.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Win32;
+using System.ComponentModel.DataAnnotations;
+using System;
 using System.Reflection;
 
 namespace Eventive.Common.Application;
@@ -26,10 +29,16 @@ public static class ApplicationConfiguration
             //Logging: This behavior logs the start and end of each request, including any errors that occur,
             //providing valuable insights into the application’s operation.
             config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+
+            //register validation pipeline behavior
+            config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
         });
 
         //Add FluentValidation.DependencyInjectionExtensions registering
         //includeInternalTypes: true -> fluent validation visible only application layer
+        //services.AddValidatorsFromAssemblies: Registers all validators from the specified assemblies.
+        //moduleAssemblies: The assemblies to scan for validators.
+        //includeInternalTypes: true: Includes internal types in the scan.
         services.AddValidatorsFromAssemblies(moduleAssemblies, includeInternalTypes: true);
 
         return services;
