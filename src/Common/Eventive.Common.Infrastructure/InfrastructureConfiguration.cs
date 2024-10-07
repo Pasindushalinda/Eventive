@@ -1,10 +1,13 @@
 ﻿using Eventive.Common.Application.Clock;
 using Eventive.Common.Application.Data;
+using Eventive.Common.Application.ICacheService;
+using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using StackExchange.Redis;
 
 namespace Eventive.Common.Infrastructure;
 
@@ -12,7 +15,8 @@ public static class InfrastructureConfiguration
 {
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
-        string databaseConnectionString)
+        string databaseConnectionString,
+        string redisConnectionString)
     {
         //To inject datasource for DbConnectionFactory
         //Create NpgsqlDataSource object and register
@@ -25,6 +29,14 @@ public static class InfrastructureConfiguration
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        IConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
+        services.TryAddSingleton(connectionMultiplexer);
+
+        services.AddStackExchangeRedisCache(options =>
+            options.ConnectionMultiplexerFactory = () => Task.FromResult(connectionMultiplexer));
+
+        services.TryAddSingleton<ICacheService, CacheService>();
 
         return services;
     }

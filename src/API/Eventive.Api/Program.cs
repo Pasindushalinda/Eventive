@@ -28,7 +28,10 @@ builder.Services.AddSwaggerGen(options =>
 //specified required assemblies 
 builder.Services.AddApplication([Eventive.Modules.Events.Application.AssemblyReference.Assembly]);
 
-builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("Database")!);
+builder.Services.AddInfrastructure(
+    builder.Configuration.GetConnectionString("Database")!,
+    builder.Configuration.GetConnectionString("Cache")!
+);
 
 builder.Configuration.AddModuleConfiguration(["events"]);
 

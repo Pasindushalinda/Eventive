@@ -1,9 +1,6 @@
 ﻿using Eventive.Common.Application.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Win32;
-using System.ComponentModel.DataAnnotations;
-using System;
 using System.Reflection;
 
 namespace Eventive.Common.Application;
