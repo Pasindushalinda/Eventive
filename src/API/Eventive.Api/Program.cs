@@ -3,6 +3,8 @@ using Eventive.Api.Middleware;
 using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Modules.Events.Infrastructure;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,12 +30,18 @@ builder.Services.AddSwaggerGen(options =>
 //specified required assemblies 
 builder.Services.AddApplication([Eventive.Modules.Events.Application.AssemblyReference.Assembly]);
 
+string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
+string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
+
 builder.Services.AddInfrastructure(
-    builder.Configuration.GetConnectionString("Database")!,
-    builder.Configuration.GetConnectionString("Cache")!
-);
+    databaseConnectionString,
+    redisConnectionString);
 
 builder.Configuration.AddModuleConfiguration(["events"]);
+
+builder.Services.AddHealthChecks()
+    .AddNpgSql(databaseConnectionString)
+    .AddRedis(redisConnectionString);
 
 builder.Services.AddEventModule(builder.Configuration);
 
@@ -48,6 +56,12 @@ if (app.Environment.IsDevelopment())
 }
 
 EventModule.MapEndpoint(app);
+
+//use to display health
+app.MapHealthChecks("health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 //add serilog middleware
 //track the incoming request and produced structured log
