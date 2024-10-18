@@ -21,15 +21,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Events.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Events.Application", "src\Modules\Events\Eventive.Modules.Events.Application\Eventive.Modules.Events.Application.csproj", "{0B61D81C-5D25-4E21-864A-E89C9280FFA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Events.Presentaion", "src\Modules\Events\Eventive.Modules.Events.Presentaion\Eventive.Modules.Events.Presentaion.csproj", "{B0BC4BC5-0449-41CD-9616-963B9F9EFA75}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CF8D233C-152F-402D-919A-378F9494C78B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Common.Application", "src\Common\Eventive.Common.Application\Eventive.Common.Application.csproj", "{D5400734-B44E-489C-B80E-8A53A1503CBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Common.Domain", "src\Common\Eventive.Common.Domain\Eventive.Common.Domain.csproj", "{8C65A6F0-B884-4364-A23D-D239FBCC5B93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Common.Domain", "src\Common\Eventive.Common.Domain\Eventive.Common.Domain.csproj", "{8C65A6F0-B884-4364-A23D-D239FBCC5B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Common.Infrastructure", "src\Common\Eventive.Common.Infrastructure\Eventive.Common.Infrastructure.csproj", "{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Common.Infrastructure", "src\Common\Eventive.Common.Infrastructure\Eventive.Common.Infrastructure.csproj", "{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Events.Presentation", "src\Modules\Events\Eventive.Modules.Events.Presentation\Eventive.Modules.Events.Presentation.csproj", "{22268CCF-269A-47AC-9C8C-CB8DDDFDA251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Common.Presentation", "src\Common\Eventive.Common.Presentation\Eventive.Common.Presentation.csproj", "{4AAFE9F2-CB20-4662-8C99-B10B705280F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +59,6 @@ Global
 		{0B61D81C-5D25-4E21-864A-E89C9280FFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B61D81C-5D25-4E21-864A-E89C9280FFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B61D81C-5D25-4E21-864A-E89C9280FFA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0BC4BC5-0449-41CD-9616-963B9F9EFA75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0BC4BC5-0449-41CD-9616-963B9F9EFA75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0BC4BC5-0449-41CD-9616-963B9F9EFA75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0BC4BC5-0449-41CD-9616-963B9F9EFA75}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5400734-B44E-489C-B80E-8A53A1503CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5400734-B44E-489C-B80E-8A53A1503CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5400734-B44E-489C-B80E-8A53A1503CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,6 +71,14 @@ Global
 		{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22268CCF-269A-47AC-9C8C-CB8DDDFDA251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22268CCF-269A-47AC-9C8C-CB8DDDFDA251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22268CCF-269A-47AC-9C8C-CB8DDDFDA251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22268CCF-269A-47AC-9C8C-CB8DDDFDA251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAFE9F2-CB20-4662-8C99-B10B705280F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAFE9F2-CB20-4662-8C99-B10B705280F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAFE9F2-CB20-4662-8C99-B10B705280F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAFE9F2-CB20-4662-8C99-B10B705280F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,11 +91,12 @@ Global
 		{693E679E-FE73-457C-9889-85B5CAFE851A} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
 		{B95AF025-49CA-4926-9866-FF086113D22D} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
 		{0B61D81C-5D25-4E21-864A-E89C9280FFA5} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
-		{B0BC4BC5-0449-41CD-9616-963B9F9EFA75} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
 		{CF8D233C-152F-402D-919A-378F9494C78B} = {A964E695-95DD-46C6-8A11-7937C84BCD78}
 		{D5400734-B44E-489C-B80E-8A53A1503CBC} = {CF8D233C-152F-402D-919A-378F9494C78B}
 		{8C65A6F0-B884-4364-A23D-D239FBCC5B93} = {CF8D233C-152F-402D-919A-378F9494C78B}
 		{6FFA4DF5-511D-42CF-9F5C-396E849FB3CC} = {CF8D233C-152F-402D-919A-378F9494C78B}
+		{22268CCF-269A-47AC-9C8C-CB8DDDFDA251} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
+		{4AAFE9F2-CB20-4662-8C99-B10B705280F5} = {CF8D233C-152F-402D-919A-378F9494C78B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {822C4E77-D0CA-439C-ACA0-26D3301CD8DB}

@@ -2,6 +2,7 @@ using Eventive.Api.Extensions;
 using Eventive.Api.Middleware;
 using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
+using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Events.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -55,7 +56,7 @@ if (app.Environment.IsDevelopment())
     app.ApplyMigrations();
 }
 
-EventModule.MapEndpoint(app);
+app.MapEndpoints();
 
 //use to display health
 app.MapHealthChecks("health", new HealthCheckOptions
