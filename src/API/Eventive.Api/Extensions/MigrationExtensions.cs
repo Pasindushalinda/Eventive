@@ -1,4 +1,5 @@
 ﻿using Eventive.Modules.Events.Infrastructure.Database;
+using Eventive.Modules.Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Eventive.Api.Extensions;
@@ -10,6 +11,7 @@ public static class MigrationExtensions
         using IServiceScope scope = app.ApplicationServices.CreateScope();
 
         ApplyMigration<EventDbContext>(scope);
+        ApplyMigration<UsersDbContext>(scope);
     }
 
     private static void ApplyMigration<TDbContext>(IServiceScope scope)

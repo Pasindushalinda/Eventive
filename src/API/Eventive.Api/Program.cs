@@ -4,6 +4,7 @@ using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Events.Infrastructure;
+using Eventive.Modules.Users.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
@@ -29,7 +30,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 //specified required assemblies 
-builder.Services.AddApplication([Eventive.Modules.Events.Application.AssemblyReference.Assembly]);
+builder.Services.AddApplication([
+    Eventive.Modules.Events.Application.AssemblyReference.Assembly,
+    Eventive.Modules.Users.Application.AssemblyReference.Assembly
+    ]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
@@ -45,6 +49,7 @@ builder.Services.AddHealthChecks()
     .AddRedis(redisConnectionString);
 
 builder.Services.AddEventModule(builder.Configuration);
+builder.Services.AddUsersModule(builder.Configuration);
 
 var app = builder.Build();
 

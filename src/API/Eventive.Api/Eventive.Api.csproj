@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Events\Eventive.Modules.Events.Infrastructure\Eventive.Modules.Events.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Users\Eventive.Modules.Users.Infrastructure\Eventive.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
