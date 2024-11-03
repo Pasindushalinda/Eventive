@@ -43,6 +43,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Presentation", "src\Modules\Users\Eventive.Modules.Users.Presentation\Eventive.Modules.Users.Presentation.csproj", "{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ticketing", "Ticketing", "{35CA19D5-B640-4C66-BE5C-7CF874171152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Application", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Application\Eventive.Modules.Ticketing.Application.csproj", "{D23B9DA8-35A1-40BC-98EF-6C6887734243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Domain", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Domain\Eventive.Modules.Ticketing.Domain.csproj", "{00E91908-A59E-4F03-A380-482B263CE7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Infrastructure", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Infrastructure\Eventive.Modules.Ticketing.Infrastructure.csproj", "{C541A661-80B2-423C-9B38-36BC6FE13B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Presentation", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Presentation\Eventive.Modules.Ticketing.Presentation.csproj", "{13EE7906-60C8-42AA-8D6A-125B51A2A41D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +115,22 @@ Global
 		{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23B9DA8-35A1-40BC-98EF-6C6887734243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23B9DA8-35A1-40BC-98EF-6C6887734243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23B9DA8-35A1-40BC-98EF-6C6887734243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23B9DA8-35A1-40BC-98EF-6C6887734243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E91908-A59E-4F03-A380-482B263CE7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E91908-A59E-4F03-A380-482B263CE7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E91908-A59E-4F03-A380-482B263CE7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E91908-A59E-4F03-A380-482B263CE7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C541A661-80B2-423C-9B38-36BC6FE13B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C541A661-80B2-423C-9B38-36BC6FE13B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C541A661-80B2-423C-9B38-36BC6FE13B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C541A661-80B2-423C-9B38-36BC6FE13B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +154,11 @@ Global
 		{51011A02-D225-4D0B-84F6-D21C35859E29} = {37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}
 		{A927A959-73EC-45E6-869F-9F99690AC13F} = {37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}
 		{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8} = {37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}
+		{35CA19D5-B640-4C66-BE5C-7CF874171152} = {FA5425E3-41C6-4D25-A3E3-3C4A9714B6CD}
+		{D23B9DA8-35A1-40BC-98EF-6C6887734243} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
+		{00E91908-A59E-4F03-A380-482B263CE7C8} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
+		{C541A661-80B2-423C-9B38-36BC6FE13B8B} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
+		{13EE7906-60C8-42AA-8D6A-125B51A2A41D} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {822C4E77-D0CA-439C-ACA0-26D3301CD8DB}
