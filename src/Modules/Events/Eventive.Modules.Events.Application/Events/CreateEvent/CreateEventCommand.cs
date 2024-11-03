@@ -3,8 +3,9 @@
 namespace Eventive.Modules.Events.Application.Events.CreateEvent;
 
 public sealed record CreateEventCommand(
+    Guid CategoryId,
     string Title,
     string Description,
     string Location,
-    DateTime StartAtUtc,
-    DateTime? EndAtUtc) : ICommand<Guid>;
+    DateTime StartsAtUtc,
+    DateTime? EndsAtUtc) : ICommand<Guid>;

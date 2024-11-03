@@ -1,3 +1,4 @@
+using Eventive.Common.Infrastructure.Interceptors;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Events.Application.Abstarctions.Data;
 using Eventive.Modules.Events.Domain.Categories;
@@ -27,14 +28,16 @@ public static class EventModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        string databaseConnectionString = configuration.GetConnectionString("Database")!;       
+        string databaseConnectionString = configuration.GetConnectionString("Database")!;
 
         //adding database context
-        services.AddDbContext<EventDbContext>(options =>
+        services.AddDbContext<EventDbContext>((sp, options) =>
             options.UseNpgsql(databaseConnectionString,
                 npgsqlOption => npgsqlOption
                     .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Event))
                     .UseSnakeCaseNamingConvention()
+                    //if save change call, then publish domain event using mediatR
+                    .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
         );
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventDbContext>());

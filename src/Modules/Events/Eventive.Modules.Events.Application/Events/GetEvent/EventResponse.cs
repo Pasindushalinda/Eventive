@@ -6,6 +6,6 @@ public sealed record EventResponse
     string Title,
     string Description,
     string Location,
-    DateTime StartAtUtc,
-    DateTime EndAtUtc
+    DateTime StartsAtUtc,
+    DateTime EndsAtUtc
 );

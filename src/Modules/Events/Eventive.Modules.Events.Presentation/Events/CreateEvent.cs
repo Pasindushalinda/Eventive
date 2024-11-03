@@ -16,11 +16,12 @@ internal sealed class CreateEvent : IEndpoint
         app.MapPost("events", async (Request request, ISender sender) =>
         {
             var command = new CreateEventCommand(
+                request.CategoryId,
                 request.Title,
                 request.Description,
                 request.Location,
-                request.StartAtUtc,
-                request.EndAtUtc);
+                request.StartsAtUtc,
+                request.EndsAtUtc);
 
             Result<Guid> result = await sender.Send(command);
 
@@ -32,9 +33,10 @@ internal sealed class CreateEvent : IEndpoint
 
 public sealed class Request
 {
+    public Guid CategoryId { get; init; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string Location { get; set; }
-    public DateTime StartAtUtc { get; set; }
-    public DateTime EndAtUtc { get; set; }
+    public DateTime StartsAtUtc { get; set; }
+    public DateTime EndsAtUtc { get; set; }
 }

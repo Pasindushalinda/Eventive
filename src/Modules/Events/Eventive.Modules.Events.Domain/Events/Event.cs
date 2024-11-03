@@ -1,4 +1,5 @@
 using Eventive.Common.Domain;
+using Eventive.Modules.Events.Domain.Categories;
 
 namespace Eventive.Modules.Events.Domain.Events;
 
@@ -15,20 +16,21 @@ public sealed class Event : Entity
     public string Title { get; private set; }
     public string Description { get; private set; }
     public string Location { get; private set; }
-    public DateTime StartAtUtc { get; private set; }
-    public DateTime? EndAtUtc { get; private set; }
+    public DateTime StartsAtUtc { get; private set; }
+    public DateTime? EndsAtUtc { get; private set; }
     public EventStatus Status { get; private set; }
 
     //To create object for prospect, for application layer
     //Create static factory methods
     public static Result<Event> Create(
+        Category category,
         string title,
         string description,
         string location,
-        DateTime startAtUtc,
-        DateTime? endAtUtc)
+        DateTime StartsAtUtc,
+        DateTime? EndsAtUtc)
     {
-        if (endAtUtc.HasValue && endAtUtc < startAtUtc)
+        if (EndsAtUtc.HasValue && EndsAtUtc < StartsAtUtc)
         {
             return Result.Failure<Event>(EventErrors.EndDatePrecedesStartDate);
         }
@@ -36,11 +38,12 @@ public sealed class Event : Entity
         var @event = new Event
         {
             Id = Guid.NewGuid(),
+            CategoryId = category.Id,
             Title = title,
             Description = description,
             Location = location,
-            StartAtUtc = startAtUtc,
-            EndAtUtc = endAtUtc
+            StartsAtUtc = StartsAtUtc,
+            EndsAtUtc = EndsAtUtc
         };
 
         //When you create a new Event using the Create method, an EventCreatedDomainEvent 
@@ -68,15 +71,15 @@ public sealed class Event : Entity
 
     public void Reschedule(DateTime startsAtUtc, DateTime? endsAtUtc)
     {
-        if (StartAtUtc == startsAtUtc && EndAtUtc == endsAtUtc)
+        if (StartsAtUtc == startsAtUtc && EndsAtUtc == endsAtUtc)
         {
             return;
         }
 
-        StartAtUtc = startsAtUtc;
-        EndAtUtc = endsAtUtc;
+        StartsAtUtc = startsAtUtc;
+        EndsAtUtc = endsAtUtc;
 
-        Raise(new EventRescheduledDomainEvent(Id, StartAtUtc, EndAtUtc));
+        Raise(new EventRescheduledDomainEvent(Id, StartsAtUtc, EndsAtUtc));
     }
 
     public Result Cancel(DateTime utcNow)
@@ -86,7 +89,7 @@ public sealed class Event : Entity
             return Result.Failure(EventErrors.AlreadyCanceled);
         }
 
-        if (StartAtUtc < utcNow)
+        if (StartsAtUtc < utcNow)
         {
             return Result.Failure(EventErrors.AlreadyStarted);
         }

@@ -4,6 +4,7 @@ using Eventive.Common.Application.ICacheService;
 using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
+using Eventive.Common.Infrastructure.Interceptors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -27,6 +28,9 @@ public static class InfrastructureConfiguration
 
         //use NpgsqlDataSource connection Scoped 
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+
+        //Domain Event register and should introduced to Dbcontext in Event Module
+        services.TryAddSingleton<PublishDomainEventsInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 

@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Eventive.Modules.Events.Api.Database.Migrations
+namespace Eventive.Modules.Events.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(EventDbContext))]
     partial class EventDbContextModelSnapshot : ModelSnapshot
@@ -61,18 +61,18 @@ namespace Eventive.Modules.Events.Api.Database.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("EndAtUtc")
+                    b.Property<DateTime?>("EndsAtUtc")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("end_at_utc");
+                        .HasColumnName("ends_at_utc");
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("location");
 
-                    b.Property<DateTime>("StartAtUtc")
+                    b.Property<DateTime>("StartsAtUtc")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("start_at_utc");
+                        .HasColumnName("starts_at_utc");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer")

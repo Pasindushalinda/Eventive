@@ -20,8 +20,8 @@ internal sealed class GetEventQueryHandler(IDbConnectionFactory dbConnectionFact
                  title AS {nameof(EventResponse.Title)},
                  description AS {nameof(EventResponse.Description)},
                  location AS {nameof(EventResponse.Location)},
-                 starts_at_utc AS {nameof(EventResponse.StartAtUtc)},
-                 ends_at_utc AS {nameof(EventResponse.EndAtUtc)}
+                 starts_at_utc AS {nameof(EventResponse.StartsAtUtc)},
+                 ends_at_utc AS {nameof(EventResponse.EndsAtUtc)}
              FROM events.events
              WHERE id = @EventId
              """;
