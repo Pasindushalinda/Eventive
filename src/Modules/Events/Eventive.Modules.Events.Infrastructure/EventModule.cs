@@ -7,7 +7,9 @@ using Eventive.Modules.Events.Domain.TicketTypes;
 using Eventive.Modules.Events.Infrastructure.Categories;
 using Eventive.Modules.Events.Infrastructure.Database;
 using Eventive.Modules.Events.Infrastructure.Events;
+using Eventive.Modules.Events.Infrastructure.PublicApi;
 using Eventive.Modules.Events.Infrastructure.TicketTypes;
+using Eventive.Modules.Events.PublicApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -45,5 +47,7 @@ public static class EventModule
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+        services.AddScoped<IEventsApi, EventsApi>();
     }
 }

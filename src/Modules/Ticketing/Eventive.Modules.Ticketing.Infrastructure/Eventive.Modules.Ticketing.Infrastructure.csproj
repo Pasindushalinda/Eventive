@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\Common\Eventive.Common.Infrastructure\Eventive.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Ticketing.Application\Eventive.Modules.Ticketing.Application.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Ticketing.Presentation\Eventive.Modules.Ticketing.Presentation.csproj" />
+    <ProjectReference Include="..\Eventive.Modules.Ticketing.PublicApi\Eventive.Modules.Ticketing.PublicApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Events.Infrastructure;
+using Eventive.Modules.Ticketing.Application;
 using Eventive.Modules.Ticketing.Infrastructure;
 using Eventive.Modules.Users.Infrastructure;
 using HealthChecks.UI.Client;
@@ -34,7 +35,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddApplication([
     Eventive.Modules.Events.Application.AssemblyReference.Assembly,
     Eventive.Modules.Users.Application.AssemblyReference.Assembly,
-    Eventive.Modules.Ticketing.Application.AssemblyReference.Assembly
+    AssemblyReference.Assembly
     ]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Eventive.Common.Application\Eventive.Common.Application.csproj" />
+    <ProjectReference Include="..\..\Ticketing\Eventive.Modules.Ticketing.PublicApi\Eventive.Modules.Ticketing.PublicApi.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Users.Domain\Eventive.Modules.Users.Domain.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using Eventive.Modules.Events.Infrastructure.Database;
+using Eventive.Modules.Ticketing.Infrastructure.Database;
 using Eventive.Modules.Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ public static class MigrationExtensions
 
         ApplyMigration<EventDbContext>(scope);
         ApplyMigration<UsersDbContext>(scope);
+        ApplyMigration<TicketingDbContext>(scope);
     }
 
     private static void ApplyMigration<TDbContext>(IServiceScope scope)
