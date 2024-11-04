@@ -35,29 +35,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Common.Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Application", "src\Modules\Users\Eventive.Modules.Users.Application\Eventive.Modules.Users.Application.csproj", "{5EABE670-9F4D-401A-84FB-AA843508BB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Users.Application", "src\Modules\Users\Eventive.Modules.Users.Application\Eventive.Modules.Users.Application.csproj", "{5EABE670-9F4D-401A-84FB-AA843508BB1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Domain", "src\Modules\Users\Eventive.Modules.Users.Domain\Eventive.Modules.Users.Domain.csproj", "{51011A02-D225-4D0B-84F6-D21C35859E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Users.Domain", "src\Modules\Users\Eventive.Modules.Users.Domain\Eventive.Modules.Users.Domain.csproj", "{51011A02-D225-4D0B-84F6-D21C35859E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Infrastructure", "src\Modules\Users\Eventive.Modules.Users.Infrastructure\Eventive.Modules.Users.Infrastructure.csproj", "{A927A959-73EC-45E6-869F-9F99690AC13F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Users.Infrastructure", "src\Modules\Users\Eventive.Modules.Users.Infrastructure\Eventive.Modules.Users.Infrastructure.csproj", "{A927A959-73EC-45E6-869F-9F99690AC13F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.Presentation", "src\Modules\Users\Eventive.Modules.Users.Presentation\Eventive.Modules.Users.Presentation.csproj", "{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Users.Presentation", "src\Modules\Users\Eventive.Modules.Users.Presentation\Eventive.Modules.Users.Presentation.csproj", "{510D6BEE-7C8B-43E2-A812-D6DF9747F7E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ticketing", "Ticketing", "{35CA19D5-B640-4C66-BE5C-7CF874171152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Application", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Application\Eventive.Modules.Ticketing.Application.csproj", "{D23B9DA8-35A1-40BC-98EF-6C6887734243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Ticketing.Application", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Application\Eventive.Modules.Ticketing.Application.csproj", "{D23B9DA8-35A1-40BC-98EF-6C6887734243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Domain", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Domain\Eventive.Modules.Ticketing.Domain.csproj", "{00E91908-A59E-4F03-A380-482B263CE7C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Ticketing.Domain", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Domain\Eventive.Modules.Ticketing.Domain.csproj", "{00E91908-A59E-4F03-A380-482B263CE7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Infrastructure", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Infrastructure\Eventive.Modules.Ticketing.Infrastructure.csproj", "{C541A661-80B2-423C-9B38-36BC6FE13B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Ticketing.Infrastructure", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Infrastructure\Eventive.Modules.Ticketing.Infrastructure.csproj", "{C541A661-80B2-423C-9B38-36BC6FE13B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.Presentation", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Presentation\Eventive.Modules.Ticketing.Presentation.csproj", "{13EE7906-60C8-42AA-8D6A-125B51A2A41D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Ticketing.Presentation", "src\Modules\Ticketing\Eventive.Modules.Ticketing.Presentation\Eventive.Modules.Ticketing.Presentation.csproj", "{13EE7906-60C8-42AA-8D6A-125B51A2A41D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.PublicApi", "src\Modules\Users\Eventive.Modules.Users.PublicApi\Eventive.Modules.Users.PublicApi.csproj", "{90019271-7DC4-4146-8578-895B931A021D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventive.Modules.Events.PublicApi", "src\Modules\Events\Eventive.Modules.Events.PublicApi\Eventive.Modules.Events.PublicApi.csproj", "{CCCE0020-1411-4277-A176-6CC52A2568A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Events.PublicApi", "src\Modules\Events\Eventive.Modules.Events.PublicApi\Eventive.Modules.Events.PublicApi.csproj", "{CCCE0020-1411-4277-A176-6CC52A2568A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Ticketing.PublicApi", "src\Modules\Ticketing\Eventive.Modules.Ticketing.PublicApi\Eventive.Modules.Ticketing.PublicApi.csproj", "{2CC844BE-9F19-4833-A211-804315958783}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventive.Modules.Users.IntegrationEvents", "src\Modules\Users\Eventive.Modules.Users.IntegrationEvents\Eventive.Modules.Users.IntegrationEvents.csproj", "{15BF8089-0B83-47CC-B1E0-9F179C5C9B82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,18 +135,14 @@ Global
 		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13EE7906-60C8-42AA-8D6A-125B51A2A41D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90019271-7DC4-4146-8578-895B931A021D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90019271-7DC4-4146-8578-895B931A021D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90019271-7DC4-4146-8578-895B931A021D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90019271-7DC4-4146-8578-895B931A021D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCCE0020-1411-4277-A176-6CC52A2568A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CCCE0020-1411-4277-A176-6CC52A2568A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCE0020-1411-4277-A176-6CC52A2568A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCE0020-1411-4277-A176-6CC52A2568A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CC844BE-9F19-4833-A211-804315958783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CC844BE-9F19-4833-A211-804315958783}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CC844BE-9F19-4833-A211-804315958783}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CC844BE-9F19-4833-A211-804315958783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15BF8089-0B83-47CC-B1E0-9F179C5C9B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15BF8089-0B83-47CC-B1E0-9F179C5C9B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15BF8089-0B83-47CC-B1E0-9F179C5C9B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15BF8089-0B83-47CC-B1E0-9F179C5C9B82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,9 +171,8 @@ Global
 		{00E91908-A59E-4F03-A380-482B263CE7C8} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
 		{C541A661-80B2-423C-9B38-36BC6FE13B8B} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
 		{13EE7906-60C8-42AA-8D6A-125B51A2A41D} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
-		{90019271-7DC4-4146-8578-895B931A021D} = {37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}
 		{CCCE0020-1411-4277-A176-6CC52A2568A8} = {66ECFDEE-9548-4FB0-A6DD-61C07B298DF4}
-		{2CC844BE-9F19-4833-A211-804315958783} = {35CA19D5-B640-4C66-BE5C-7CF874171152}
+		{15BF8089-0B83-47CC-B1E0-9F179C5C9B82} = {37DADBCA-689C-4C24-8BFE-AEDB214CFD9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {822C4E77-D0CA-439C-ACA0-26D3301CD8DB}

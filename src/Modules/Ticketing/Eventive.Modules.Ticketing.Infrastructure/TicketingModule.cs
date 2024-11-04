@@ -5,12 +5,12 @@ using Eventive.Modules.Ticketing.Application.Carts;
 using Eventive.Modules.Ticketing.Domain.Customers;
 using Eventive.Modules.Ticketing.Infrastructure.Customers;
 using Eventive.Modules.Ticketing.Infrastructure.Database;
-using Eventive.Modules.Ticketing.Infrastructure.PublicApi;
-using Eventive.Modules.Ticketing.PublicApi;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore;
+using Eventive.Modules.Ticketing.Presentation.Customers;
+using MassTransit;
 
 namespace Eventive.Modules.Ticketing.Infrastructure;
 
@@ -25,6 +25,11 @@ public static class TicketingModule
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
         return services;
+    }
+
+    public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
+    {
+        registrationConfigurator.AddConsumer<UserRegisteredIntegrationEventConsumer>();
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -44,7 +49,6 @@ public static class TicketingModule
 
         services.AddSingleton<CartService>();
 
-        services.AddScoped<ITicketingApi, TicketingApi>();
     }
 }
 

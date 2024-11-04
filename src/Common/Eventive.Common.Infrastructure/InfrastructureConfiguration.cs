@@ -1,10 +1,12 @@
 ﻿using Eventive.Common.Application.Clock;
 using Eventive.Common.Application.Data;
+using Eventive.Common.Application.EventBus;
 using Eventive.Common.Application.ICacheService;
 using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
 using Eventive.Common.Infrastructure.Interceptors;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -14,8 +16,10 @@ namespace Eventive.Common.Infrastructure;
 
 public static class InfrastructureConfiguration
 {
+    //The Action<T> delegate represents a method that takes a single parameter and does not return a value. In this case, T is IRegistrationConfigurator
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
+        Action<IRegistrationConfigurator>[] moduleConfigureConsumers,
         string databaseConnectionString,
         string redisConnectionString)
     {
@@ -50,6 +54,26 @@ public static class InfrastructureConfiguration
         }
 
         services.TryAddSingleton<ICacheService, CacheService>();
+
+        services.TryAddSingleton<IEventBus, EventBus.EventBus>();
+
+        services.AddMassTransit(configure =>
+        {
+            //add consumers
+            foreach (Action<IRegistrationConfigurator> configureConsumer in moduleConfigureConsumers)
+            {
+                configureConsumer(configure);
+            }
+
+            //make endpoinds nicely readable
+            configure.SetKebabCaseEndpointNameFormatter();
+
+            //register the consumer and register required broker topology
+            configure.UsingInMemory((context, cfg) =>
+            {
+                cfg.ConfigureEndpoints(context);
+            });
+        });
 
         return services;
     }

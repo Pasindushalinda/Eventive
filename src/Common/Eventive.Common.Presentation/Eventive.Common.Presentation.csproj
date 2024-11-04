@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit.Abstractions" Version="8.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Eventive.Common.Domain\Eventive.Common.Domain.csproj" />
   </ItemGroup>
 
