@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Eventive.Modules.Users.Application.Abstractions.Identity;
+using Eventive.Modules.Users.Infrastructure.Identity;
+using Microsoft.Extensions.Options;
 
 namespace Eventive.Modules.Users.Infrastructure;
 
@@ -26,6 +29,30 @@ public static class UsersModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        //set concrete values from user appsetting file
+        services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
+
+        services.AddTransient<KeyCloakAuthDelegatingHandler>();
+
+        //AddHttpClient: Registers an HttpClient for KeyCloakClient.
+
+        //Lambda Expression: Configures the HttpClient using the serviceProvider to get
+        //required services and configure the base address from KeyCloakOptions
+
+        //AddHttpMessageHandler: Adds a custom handler (KeyCloakAuthDelegatingHandler)
+        //to handle authentication for HTTP requests.
+        services
+            .AddHttpClient<KeyCloakClient>((serviceProvider, httpClient) =>
+            {
+                KeyCloakOptions keyCloakOptions = serviceProvider
+                    .GetRequiredService<IOptions<KeyCloakOptions>>().Value;
+
+                httpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
+            })
+            .AddHttpMessageHandler<KeyCloakAuthDelegatingHandler>();
+
+        services.AddTransient<IIdentityProviderService, IdentityProviderService>();
+
         services.AddDbContext<UsersDbContext>((sp, options) =>
             options
                 .UseNpgsql(

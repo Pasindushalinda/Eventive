@@ -1,4 +1,11 @@
 {
   "Users": {
+    "KeyCloak": {
+      "AdminUrl": "http://eventive.identity:8080/admin/realms/eventive/",
+      "TokenUrl": "http://eventive.identity:8080/realms/eventive/protocol/openid-connect/token",
+      "ConfidentialClientId": "eventive-confidential-client",
+      "ConfidentialClientSecret": "cMtmlIdY6hm9ByhdV3PszLtkq72dOK16",
+      "PublicClientId": "eventive-public-client"
+    }
   }
 }

@@ -35,7 +35,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddApplication([
     Eventive.Modules.Events.Application.AssemblyReference.Assembly,
     Eventive.Modules.Users.Application.AssemblyReference.Assembly,
-    AssemblyReference.Assembly
+    Eventive.Modules.Ticketing.Application.AssemblyReference.Assembly
     ]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
@@ -46,7 +46,7 @@ builder.Services.AddInfrastructure(
     databaseConnectionString,
     redisConnectionString);
 
-builder.Configuration.AddModuleConfiguration(["events"]);
+builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing"]);
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
