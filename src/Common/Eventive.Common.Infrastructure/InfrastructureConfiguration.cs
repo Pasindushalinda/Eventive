@@ -2,6 +2,7 @@
 using Eventive.Common.Application.Data;
 using Eventive.Common.Application.EventBus;
 using Eventive.Common.Application.ICacheService;
+using Eventive.Common.Infrastructure.Authentication;
 using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
@@ -16,6 +17,7 @@ namespace Eventive.Common.Infrastructure;
 
 public static class InfrastructureConfiguration
 {
+    //in api project program file will call this method when app starts
     //The Action<T> delegate represents a method that takes a single parameter and does not return a value. In this case, T is IRegistrationConfigurator
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
@@ -23,6 +25,9 @@ public static class InfrastructureConfiguration
         string databaseConnectionString,
         string redisConnectionString)
     {
+        //register jwt athuntication from AuthenticationExtensions
+        services.AddAuthenticationInternal();
+
         //To inject datasource for DbConnectionFactory
         //Create NpgsqlDataSource object and register
         NpgsqlDataSource npgsqlDataSource = new NpgsqlDataSourceBuilder(databaseConnectionString).Build();

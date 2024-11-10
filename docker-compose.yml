@@ -23,6 +23,21 @@ services:
     ports:
       - 5432:5432
 
+  eventive.identity:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: Eventive.Identity
+    command: start-dev #--import-realm
+    environment:
+      - KC_METRICS_ENABLED=true
+      - KC_HEALTH_ENABLED=true
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - ./.containers/identity:/opt/keycloak/data
+      - ./.files:/opt/keycloak/data/import
+    ports:
+      - 18080:8080
+
   eventive.seq:
     image: datalust/seq:latest
     container_name: Eventive.Seq

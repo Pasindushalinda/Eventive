@@ -50,7 +50,9 @@ builder.Configuration.AddModuleConfiguration(["events"]);
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
-    .AddRedis(redisConnectionString);
+    .AddRedis(redisConnectionString)
+    //add aspnetcore.healthchecks.uri nuget
+    .AddUrlGroup(new Uri(builder.Configuration.GetValue<string>("KeyCloak:HealthUrl")!), HttpMethod.Get, "keycloak");
 
 builder.Services.AddEventModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
@@ -77,5 +79,11 @@ app.MapHealthChecks("health", new HealthCheckOptions
 //add serilog middleware
 //track the incoming request and produced structured log
 app.UseSerilogRequestLogging();
+
+app.UseExceptionHandler();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.Run();
