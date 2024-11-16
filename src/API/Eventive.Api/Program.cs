@@ -3,6 +3,7 @@ using Eventive.Api.Middleware;
 using Eventive.Common.Application;
 using Eventive.Common.Infrastructure;
 using Eventive.Common.Presentation.Endpoints;
+using Eventive.Modules.Attendance.Infrastructure;
 using Eventive.Modules.Events.Infrastructure;
 using Eventive.Modules.Ticketing.Application;
 using Eventive.Modules.Ticketing.Infrastructure;
@@ -35,7 +36,8 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddApplication([
     Eventive.Modules.Events.Application.AssemblyReference.Assembly,
     Eventive.Modules.Users.Application.AssemblyReference.Assembly,
-    Eventive.Modules.Ticketing.Application.AssemblyReference.Assembly
+    Eventive.Modules.Ticketing.Application.AssemblyReference.Assembly,
+    Eventive.Modules.Attendance.Application.AssemblyReference.Assembly
     ]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
@@ -46,7 +48,7 @@ builder.Services.AddInfrastructure(
     databaseConnectionString,
     redisConnectionString);
 
-builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing"]);
+builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing", "attendance"]);
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
@@ -57,6 +59,7 @@ builder.Services.AddHealthChecks()
 builder.Services.AddEventModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
 builder.Services.AddTicketingModule(builder.Configuration);
+builder.Services.AddAttendanceModule(builder.Configuration);
 
 var app = builder.Build();
 

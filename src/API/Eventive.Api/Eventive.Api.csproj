@@ -25,9 +25,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Attendance\Eventive.Modules.Attendance.Infrastructure\Eventive.Modules.Attendance.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Events\Eventive.Modules.Events.Infrastructure\Eventive.Modules.Events.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Ticketing\Eventive.Modules.Ticketing.Infrastructure\Eventive.Modules.Ticketing.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Users\Eventive.Modules.Users.Infrastructure\Eventive.Modules.Users.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="modules.attendance.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="modules.attendance.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

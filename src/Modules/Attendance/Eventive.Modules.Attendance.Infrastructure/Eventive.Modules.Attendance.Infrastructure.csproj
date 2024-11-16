@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Eventive.Common.Infrastructure\Eventive.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\Eventive.Modules.Attendance.Application\Eventive.Modules.Attendance.Application.csproj" />
+    <ProjectReference Include="..\Eventive.Modules.Attendance.Presentation\Eventive.Modules.Attendance.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>
