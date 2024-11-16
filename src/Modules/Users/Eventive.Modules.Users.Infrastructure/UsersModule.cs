@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Eventive.Modules.Users.Application.Abstractions.Identity;
 using Eventive.Modules.Users.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
+using Eventive.Common.Application.Authorization;
+using Eventive.Modules.Users.Infrastructure.Authorization;
 
 namespace Eventive.Modules.Users.Infrastructure;
 
@@ -29,6 +31,8 @@ public static class UsersModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IPermissionService, PermissionService>();
+
         //set concrete values from user appsetting file
         services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
 

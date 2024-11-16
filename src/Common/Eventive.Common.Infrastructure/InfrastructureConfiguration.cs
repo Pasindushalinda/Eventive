@@ -3,6 +3,7 @@ using Eventive.Common.Application.Data;
 using Eventive.Common.Application.EventBus;
 using Eventive.Common.Application.ICacheService;
 using Eventive.Common.Infrastructure.Authentication;
+using Eventive.Common.Infrastructure.Authorization;
 using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
@@ -27,6 +28,9 @@ public static class InfrastructureConfiguration
     {
         //register jwt athuntication from AuthenticationExtensions
         services.AddAuthenticationInternal();
+
+        //wire up all the component required for permission authorization
+        services.AddAuthorizationInternal();
 
         //To inject datasource for DbConnectionFactory
         //Create NpgsqlDataSource object and register

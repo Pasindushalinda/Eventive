@@ -4,6 +4,9 @@ using Microsoft.Extensions.Options;
 
 namespace Eventive.Common.Infrastructure.Authentication;
 
+//You configure the JWT (JSON Web Token) authentication settings for your
+//application by reading them from the configuration file. This helps in
+//managing authentication-related settings in a centralized and consistent manner.
 internal sealed class JwtBearerConfigureOptions(IConfiguration configuration)
     : IConfigureNamedOptions<JwtBearerOptions>
 {

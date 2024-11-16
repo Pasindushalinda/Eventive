@@ -13,6 +13,13 @@ internal sealed class UserRepository(UsersDbContext context) : IUserRepository
 
     public void Insert(User user)
     {
+        //If the roles are already in the database and you simply want to associate them with
+        //the user without adding new roles, this is necessary 
+        foreach (Role role in user.Roles)
+        {
+            context.Attach(role);
+        }
+
         context.Users.Add(user);
     }
 }

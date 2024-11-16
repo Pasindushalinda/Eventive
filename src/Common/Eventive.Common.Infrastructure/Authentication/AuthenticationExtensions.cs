@@ -2,6 +2,11 @@
 
 namespace Eventive.Common.Infrastructure.Authentication;
 
+//You add a method to register and configure authentication services in your
+//application's service collection. This includes setting up JWT bearer
+//authentication, adding authorization, and configuring options for JWT
+//bearer authentication using a class
+
 //install Microsoft.AspNetCore.Authentication.JwtBearer
 //after this add Authentication middleware to program.cs
 internal static class AuthenticationExtensions
