@@ -1,5 +1,4 @@
-﻿using Eventive.Common.Infrastructure.Interceptors;
-using Eventive.Common.Presentation.Endpoints;
+﻿using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Ticketing.Application.Abstractions.Data;
 using Eventive.Modules.Ticketing.Application.Carts;
 using Eventive.Modules.Ticketing.Domain.Customers;
@@ -20,6 +19,7 @@ using Eventive.Modules.Ticketing.Infrastructure.Orders;
 using Eventive.Modules.Ticketing.Infrastructure.Payments;
 using Eventive.Modules.Ticketing.Infrastructure.Tickets;
 using Eventive.Modules.Ticketing.Domain.Events;
+using Eventive.Common.Infrastructure.Outbox;
 
 namespace Eventive.Modules.Ticketing.Infrastructure;
 
@@ -49,7 +49,7 @@ public static class TicketingModule
                     configuration.GetConnectionString("Database"),
                     npgsqlOptions => npgsqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Ticketing))
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessageInterceptor>())
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();

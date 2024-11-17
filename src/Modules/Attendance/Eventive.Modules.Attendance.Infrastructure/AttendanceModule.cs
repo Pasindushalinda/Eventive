@@ -1,4 +1,4 @@
-﻿using Eventive.Common.Infrastructure.Interceptors;
+﻿using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Attendance.Application.Abstractions.Authentication;
 using Eventive.Modules.Attendance.Application.Abstractions.Data;
@@ -39,7 +39,7 @@ public static class AttendanceModule
                     npgsqlOptions => npgsqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Attendance))
                 .UseSnakeCaseNamingConvention()
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>()));
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessageInterceptor>()));
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AttendanceDbContext>());
 

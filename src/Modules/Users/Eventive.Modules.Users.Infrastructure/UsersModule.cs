@@ -1,5 +1,4 @@
-﻿using Eventive.Common.Infrastructure.Interceptors;
-using Eventive.Common.Presentation.Endpoints;
+﻿using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Users.Application.Abstractions.Data;
 using Eventive.Modules.Users.Domain.Users;
 using Eventive.Modules.Users.Infrastructure.Database;
@@ -13,6 +12,8 @@ using Eventive.Modules.Users.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
 using Eventive.Common.Application.Authorization;
 using Eventive.Modules.Users.Infrastructure.Authorization;
+using Eventive.Common.Infrastructure.Outbox;
+using Eventive.Modules.Users.Infrastructure.Outbox;
 
 namespace Eventive.Modules.Users.Infrastructure;
 
@@ -63,12 +64,17 @@ public static class UsersModule
                     configuration.GetConnectionString("Database"),
                     npgsqlOptions => npgsqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Users))
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessageInterceptor>())
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<UsersDbContext>());
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Users:Outbox"));
+
+        //trigger ConfigureProcessOutboxJob
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
 
     }
 }

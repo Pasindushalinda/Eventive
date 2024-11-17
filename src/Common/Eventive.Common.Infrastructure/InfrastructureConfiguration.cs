@@ -7,11 +7,12 @@ using Eventive.Common.Infrastructure.Authorization;
 using Eventive.Common.Infrastructure.Caching;
 using Eventive.Common.Infrastructure.Clock;
 using Eventive.Common.Infrastructure.Data;
-using Eventive.Common.Infrastructure.Interceptors;
+using Eventive.Common.Infrastructure.Outbox;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using Quartz;
 using StackExchange.Redis;
 
 namespace Eventive.Common.Infrastructure;
@@ -43,9 +44,16 @@ public static class InfrastructureConfiguration
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
         //Domain Event register and should introduced to Dbcontext in Event Module
-        services.TryAddSingleton<PublishDomainEventsInterceptor>();
+        services.TryAddSingleton<InsertOutboxMessageInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        //intro Quartz
+        services.AddQuartz();
+
+        //help to run background services
+        //WaitForJobsToComplete-> waits for current job complete before shut down the proccess
+        services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
         //when creating db migration redis error comes beacuse redis instance not run
         //at this time. Add memory instance to prevent error

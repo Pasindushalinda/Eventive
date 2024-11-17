@@ -1,4 +1,5 @@
-﻿using Eventive.Modules.Ticketing.Application.Abstractions.Data;
+﻿using Eventive.Common.Infrastructure.Outbox;
+using Eventive.Modules.Ticketing.Application.Abstractions.Data;
 using Eventive.Modules.Ticketing.Domain.Customers;
 using Eventive.Modules.Ticketing.Domain.Events;
 using Eventive.Modules.Ticketing.Domain.Orders;
@@ -35,6 +36,7 @@ public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> opti
     {
         modelBuilder.HasDefaultSchema(Schemas.Ticketing);
 
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());

@@ -1,4 +1,4 @@
-using Eventive.Common.Infrastructure.Interceptors;
+using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Events.Application.Abstarctions.Data;
 using Eventive.Modules.Events.Domain.Categories;
@@ -39,7 +39,7 @@ public static class EventModule
                     .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Event))
                     .UseSnakeCaseNamingConvention()
                     //if save change call, then publish domain event using mediatR
-                    .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+                    .AddInterceptors(sp.GetRequiredService<InsertOutboxMessageInterceptor>())
         );
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventDbContext>());

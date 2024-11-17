@@ -1,3 +1,4 @@
+using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Modules.Events.Application.Abstarctions.Data;
 using Eventive.Modules.Events.Domain.Categories;
 using Eventive.Modules.Events.Domain.Events;
@@ -20,6 +21,7 @@ public sealed class EventDbContext(DbContextOptions<EventDbContext> options)
     {
         modelBuilder.HasDefaultSchema(Schemas.Event);
 
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
     }

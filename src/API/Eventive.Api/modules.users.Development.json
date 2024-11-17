@@ -1,5 +1,9 @@
 {
   "Users": {
+    "Outbox": {
+      "IntervalInSeconds": 15,
+      "BatchSize": 20
+    },
     "KeyCloak": {
       "AdminUrl": "http://eventive.identity:8080/admin/realms/eventive/",
       "TokenUrl": "http://eventive.identity:8080/realms/eventive/protocol/openid-connect/token",
