@@ -11,6 +11,8 @@ using Quartz;
 using System.Data.Common;
 using System.Data;
 using Dapper;
+using Eventive.Common.Application.Messaging;
+using Eventive.Common.Infrastructure.Outbox;
 
 namespace Eventive.Modules.Users.Infrastructure.Outbox;
 
@@ -48,11 +50,17 @@ internal sealed class ProcessOutboxJob(
 
                 using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-                IPublisher publisher = scope.ServiceProvider.GetRequiredService<IPublisher>();
+                // get domain event collection
+                IEnumerable<IDomainEventHandler> domainEventHandlers = DomainEventHandlersFactory.GetHandlers(
+                    domainEvent.GetType(),
+                    scope.ServiceProvider,
+                    Application.AssemblyReference.Assembly);
 
-                //domain event use INotification interface
-                //execure respective handlers for this domain event
-                await publisher.Publish(domainEvent);
+                foreach (IDomainEventHandler domainEventHandler in domainEventHandlers)
+                {
+                    //pass the domain event and execute the respective handler
+                    await domainEventHandler.Handle(domainEvent);
+                }
             }
             catch (Exception caughtException)
             {

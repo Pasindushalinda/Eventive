@@ -10,6 +10,7 @@
     <ProjectReference Include="..\..\..\Common\Eventive.Common.Application\Eventive.Common.Application.csproj" />
     <ProjectReference Include="..\..\Users\Eventive.Modules.Users.IntegrationEvents\Eventive.Modules.Users.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Events.Domain\Eventive.Modules.Events.Domain.csproj" />
+    <ProjectReference Include="..\Eventive.Modules.Events.IntegrationEvents\Eventive.Modules.Events.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

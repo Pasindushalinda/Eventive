@@ -18,7 +18,7 @@ namespace Eventive.Modules.Events.Infrastructure.Database.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("events")
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -57,6 +57,23 @@ namespace Eventive.Modules.Events.Infrastructure.Database.Migrations
                         .HasName("pk_outbox_messages");
 
                     b.ToTable("outbox_messages", "events");
+                });
+
+            modelBuilder.Entity("Eventive.Common.Infrastructure.Outbox.OutboxMessageConsumer", b =>
+                {
+                    b.Property<Guid>("OutboxMessageId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("outbox_message_id");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("name");
+
+                    b.HasKey("OutboxMessageId", "Name")
+                        .HasName("pk_outbox_message_consumers");
+
+                    b.ToTable("outbox_message_consumers", "events");
                 });
 
             modelBuilder.Entity("Eventive.Modules.Events.Domain.Categories.Category", b =>

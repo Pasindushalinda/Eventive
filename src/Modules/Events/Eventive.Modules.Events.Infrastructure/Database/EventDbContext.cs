@@ -22,6 +22,7 @@ public sealed class EventDbContext(DbContextOptions<EventDbContext> options)
         modelBuilder.HasDefaultSchema(Schemas.Event);
 
         modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
     }

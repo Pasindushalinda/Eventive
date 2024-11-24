@@ -14,6 +14,8 @@ using Eventive.Common.Application.Authorization;
 using Eventive.Modules.Users.Infrastructure.Authorization;
 using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Modules.Users.Infrastructure.Outbox;
+using Eventive.Common.Application.Messaging;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Eventive.Modules.Users.Infrastructure;
 
@@ -23,6 +25,8 @@ public static class UsersModule
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddDomainEventHandlers();
+
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -76,5 +80,33 @@ public static class UsersModule
         //trigger ConfigureProcessOutboxJob
         services.ConfigureOptions<ConfigureProcessOutboxJob>();
 
+    }
+
+    private static void AddDomainEventHandlers(this IServiceCollection services)
+    {
+        //Assembly Reference: It retrieves all the types from a specified assembly
+        //using Application.AssemblyReference.Assembly.
+
+        //Type Filtering: Filters the types to find those that are assignable to the IDomainEventHandler interface.      
+        Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+                    .GetTypes()
+                    .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+                    .ToArray();
+
+        //Adding Services: For each found type, it adds the type as a scoped service to the IServiceCollection
+        foreach (Type domainEventHandler in domainEventHandlers)
+        {
+            services.TryAddScoped(domainEventHandler);
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
     }
 }

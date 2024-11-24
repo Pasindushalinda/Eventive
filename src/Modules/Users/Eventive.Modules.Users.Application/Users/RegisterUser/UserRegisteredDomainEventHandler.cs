@@ -9,10 +9,12 @@ using MediatR;
 
 namespace Eventive.Modules.Users.Application.Users.RegisterUser;
 
-internal sealed class UserRegisteredDomainEventHandler(ISender sender, IEventBus eventBus)
-    : IDomainEventHandler<UserRegisteredDomainEvent>
+internal sealed class UserRegisteredDomainEventHandler(ISender sender, IEventBus bus)
+    : DomainEventHandler<UserRegisteredDomainEvent>
 {
-    public async Task Handle(UserRegisteredDomainEvent notification, CancellationToken cancellationToken)
+    public override async Task Handle(
+        UserRegisteredDomainEvent notification,
+        CancellationToken cancellationToken = default)
     {
         //UserRegisteredDomainEvent take care of internal event transaction
         Result<UserResponse> result = await sender.Send(new GetUserQuery(notification.UserId), cancellationToken);
@@ -25,7 +27,7 @@ internal sealed class UserRegisteredDomainEventHandler(ISender sender, IEventBus
         //not call for public api method customer insert in ticketingmodule
         //publish the integration event to message bus(event bus) using UserRegisteredDomainEvent
         //consume this in ticketing module presentation layer
-        await eventBus.PublishAsync(
+        await bus.PublishAsync(
             new UserRegisteredIntegrationEvent(
                 notification.Id,
                 notification.OccuredOnUtc,

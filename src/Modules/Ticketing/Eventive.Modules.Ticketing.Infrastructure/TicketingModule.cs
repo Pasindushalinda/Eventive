@@ -20,6 +20,9 @@ using Eventive.Modules.Ticketing.Infrastructure.Payments;
 using Eventive.Modules.Ticketing.Infrastructure.Tickets;
 using Eventive.Modules.Ticketing.Domain.Events;
 using Eventive.Common.Infrastructure.Outbox;
+using Eventive.Common.Application.Messaging;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Eventive.Modules.Ticketing.Infrastructure.Outbox;
 
 namespace Eventive.Modules.Ticketing.Infrastructure;
 
@@ -29,6 +32,8 @@ public static class TicketingModule
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddDomainEventHandlers();
+
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -64,6 +69,29 @@ public static class TicketingModule
         services.AddSingleton<CartService>();
         services.AddSingleton<IPaymentService, PaymentService>();
 
+    }
+
+    private static void AddDomainEventHandlers(this IServiceCollection services)
+    {
+        Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+            .ToArray();
+
+        foreach (Type domainEventHandler in domainEventHandlers)
+        {
+            services.TryAddScoped(domainEventHandler);
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
     }
 }
 
