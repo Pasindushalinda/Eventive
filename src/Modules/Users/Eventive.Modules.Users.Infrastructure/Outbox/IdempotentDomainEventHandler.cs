@@ -7,6 +7,9 @@ using System.Data.Common;
 
 namespace Eventive.Modules.Users.Infrastructure.Outbox;
 
+//Idempotency: The ability of a system to produce the same outcome,
+//even if the same event or message is received more than once
+
 //class decorates an existing domain event handler to add idempotency.
 //This ensures that an event is processed only once.
 //register this in coomn infra

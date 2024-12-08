@@ -1,4 +1,5 @@
-﻿using Eventive.Common.Infrastructure.Outbox;
+﻿using Eventive.Common.Infrastructure.Inbox;
+using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Modules.Attendance.Application.Abstractions.Data;
 using Eventive.Modules.Attendance.Domain.Attendees;
 using Eventive.Modules.Attendance.Domain.Events;
@@ -25,6 +26,8 @@ public sealed class AttendanceDbContext(DbContextOptions<AttendanceDbContext> op
 
         modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConsumerConfiguration());
         modelBuilder.ApplyConfiguration(new AttendeeConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketConfiguration());

@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Eventive.Common.Presentation\Eventive.Common.Presentation.csproj" />
+    <ProjectReference Include="..\..\Events\Eventive.Modules.Events.Application\Eventive.Modules.Events.Application.csproj" />
+    <ProjectReference Include="..\..\Events\Eventive.Modules.Events.IntegrationEvents\Eventive.Modules.Events.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Ticketing\Eventive.Modules.Ticketing.IntegrationEvents\Eventive.Modules.Ticketing.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Users\Eventive.Modules.Users.IntegrationEvents\Eventive.Modules.Users.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Eventive.Modules.Attendance.Application\Eventive.Modules.Attendance.Application.csproj" />
   </ItemGroup>
 

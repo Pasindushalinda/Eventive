@@ -1,4 +1,5 @@
-﻿using Eventive.Common.Application.Messaging;
+﻿using Eventive.Common.Application.EventBus;
+using Eventive.Common.Application.Messaging;
 using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Common.Presentation.Endpoints;
 using Eventive.Modules.Attendance.Application.Abstractions.Authentication;
@@ -10,8 +11,13 @@ using Eventive.Modules.Attendance.Infrastructure.Attendees;
 using Eventive.Modules.Attendance.Infrastructure.Authentication;
 using Eventive.Modules.Attendance.Infrastructure.Database;
 using Eventive.Modules.Attendance.Infrastructure.Events;
+using Eventive.Modules.Attendance.Infrastructure.Inbox;
 using Eventive.Modules.Attendance.Infrastructure.Outbox;
 using Eventive.Modules.Attendance.Infrastructure.Tickets;
+using Eventive.Modules.Events.IntegrationEvents;
+using Eventive.Modules.Ticketing.IntegrationEvents;
+using Eventive.Modules.Users.IntegrationEvents;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -27,12 +33,21 @@ public static class AttendanceModule
         IConfiguration configuration)
     {
         services.AddDomainEventHandlers();
+        services.AddIntegrationEventHandlers();
 
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
         return services;
+    }
+
+    public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
+    {
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserRegisteredIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserProfileUpdatedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<EventPublishedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<TicketIssuedIntegrationEvent>>();
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -53,6 +68,14 @@ public static class AttendanceModule
         services.AddScoped<ITicketRepository, TicketRepository>();
 
         services.AddScoped<IAttendanceContext, AttendanceContext>();
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Attendance:Outbox"));
+
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
+
+        services.Configure<InboxOptions>(configuration.GetSection("Attendance:Inbox"));
+
+        services.ConfigureOptions<ConfigureProcessInboxJob>();
     }
 
     private static void AddDomainEventHandlers(this IServiceCollection services)
@@ -75,6 +98,30 @@ public static class AttendanceModule
             Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
 
             services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
+    }
+
+    private static void AddIntegrationEventHandlers(this IServiceCollection services)
+    {
+        Type[] integrationEventHandlers = Presentation.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+            .ToArray();
+
+        foreach (Type integrationEventHandler in integrationEventHandlers)
+        {
+            services.TryAddScoped(integrationEventHandler);
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler =
+                typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+            services.Decorate(integrationEventHandler, closedIdempotentHandler);
         }
     }
 }

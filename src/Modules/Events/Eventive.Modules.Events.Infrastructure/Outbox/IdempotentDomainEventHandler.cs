@@ -37,7 +37,7 @@ internal sealed class IdempotentDomainEventHandler<TDomainEvent>(
             """
             SELECT EXISTS(
                 SELECT 1
-                FROM attendance.outbox_message_consumers
+                FROM events.outbox_message_consumers
                 WHERE outbox_message_id = @OutboxMessageId AND
                       name = @Name
             )
@@ -52,7 +52,7 @@ internal sealed class IdempotentDomainEventHandler<TDomainEvent>(
     {
         const string sql =
             """
-            INSERT INTO attendance.outbox_message_consumers(outbox_message_id, name)
+            INSERT INTO events.outbox_message_consumers(outbox_message_id, name)
             VALUES (@OutboxMessageId, @Name)
             """;
 

@@ -2,7 +2,6 @@
 using Eventive.Common.Application.Data;
 using Eventive.Common.Domain;
 using Eventive.Common.Infrastructure.Serialization;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -24,7 +23,7 @@ internal sealed class ProcessOutboxJob(
     IOptions<OutboxOptions> outboxOptions,
     ILogger<ProcessOutboxJob> logger) : IJob
 {
-    //which modulecurrently in
+    //which module currently in
     private const string ModuleName = "Users";
 
     public async Task Execute(IJobExecutionContext context)
@@ -50,7 +49,12 @@ internal sealed class ProcessOutboxJob(
 
                 using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-                // get domain event collection
+                //This method returns a collection of domain event handlers that are
+                //responsible for handling the specific type of domain event.
+
+                //domainEvent.GetType(): The type of the domain event.
+                //scope.ServiceProvider: The service provider to resolve instances of the handlers.
+                //Application.AssemblyReference.Assembly: The assembly to scan for handler implementations.
                 IEnumerable<IDomainEventHandler> domainEventHandlers = DomainEventHandlersFactory.GetHandlers(
                     domainEvent.GetType(),
                     scope.ServiceProvider,

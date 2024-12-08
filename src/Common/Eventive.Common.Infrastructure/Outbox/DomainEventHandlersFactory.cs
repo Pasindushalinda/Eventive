@@ -1,6 +1,5 @@
 ﻿using Eventive.Common.Application.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using StackExchange.Redis;
 using System.Collections.Concurrent;
 using System.Reflection;
 
@@ -47,6 +46,7 @@ public static class DomainEventHandlersFactory
         //and returns them as a list of IDomainEventHandler
         foreach (Type domainEventHandlerType in domainEventHandlerTypes)
         {
+            //decorate idemportant domain handler implemetation for each domain event handler
             object domainEventHandler = serviceProvider.GetRequiredService(domainEventHandlerType);
 
             handlers.Add((domainEventHandler as IDomainEventHandler)!);

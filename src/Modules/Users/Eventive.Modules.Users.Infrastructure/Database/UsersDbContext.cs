@@ -1,4 +1,5 @@
-﻿using Eventive.Common.Infrastructure.Outbox;
+﻿using Eventive.Common.Infrastructure.Inbox;
+using Eventive.Common.Infrastructure.Outbox;
 using Eventive.Modules.Users.Application.Abstractions.Data;
 using Eventive.Modules.Users.Domain.Users;
 using Eventive.Modules.Users.Infrastructure.Users;
@@ -16,6 +17,8 @@ public sealed class UsersDbContext(DbContextOptions<UsersDbContext> options) : D
 
         modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConsumerConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
         modelBuilder.ApplyConfiguration(new PermissionConfiguration());
