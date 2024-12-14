@@ -43,8 +43,12 @@ builder.Services.AddApplication([
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
+//add integration event consumers
 builder.Services.AddInfrastructure(
-    [TicketingModule.ConfigureConsumers],
+    [
+        TicketingModule.ConfigureConsumers,
+        AttendanceModule.ConfigureConsumers
+    ],
     databaseConnectionString,
     redisConnectionString);
 
